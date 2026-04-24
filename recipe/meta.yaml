@@ -11,19 +11,19 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - filesender = filesender.filesender:cmd
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
     - setuptools >58.2.0
     - wheel
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - requests
     - urllib3
     - cryptography
@@ -36,6 +36,7 @@ test:
     - filesender -h
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://www.aarnet.edu.au/filesender
